@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import AllPlayers from "./AllPlayers.jsx";
+import AllPlayers from "./components/AllPlayers.jsx";
 
-import { Route, Routes } from "react-router-dom";
-import SinglePlayer from "./SinglePlayer.jsx";
+import { Link, Route, Routes } from "react-router-dom";
+import SinglePlayer from "./components/SinglePlayer.jsx";
 
 const App = () => {
 	const [players, setPlayers] = useState([]);
@@ -41,11 +40,7 @@ const App = () => {
 				</div>
 			</div>
 			<Routes>
-				<Route
-					exact
-					path="/leaderboard"
-					element={<AllPlayers players={players} />}
-				/>
+				<Route exact path="/leaderboard" element={<AllPlayers players={players} />} />
 				<Route exact path="/leaderboard/:id" element={<SinglePlayer />} />
 				{/* <Route exact path="/test" element={<Test />} /> */}
 				<Route path="/" element={<p></p>} />

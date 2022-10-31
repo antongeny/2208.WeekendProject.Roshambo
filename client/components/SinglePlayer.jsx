@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { setSinglePlayer } from "../features/leaderboardSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const SinglePlayer = () => {
-	const [player, setPlayer] = useState([]);
 	const [doneLoading, setDoneLoading] = useState(false);
-
+	//const [player, setPlayer] = useState([]);
+	const player = useSelector((state) => state.leaderboard.singlePlayer);
 	const { id } = useParams();
+	const dispatch = useDispatch();
 
 	const getPlayer = async () => {
-		const response = await axios.get(`http://localhost:8080/api/players/${id}`);
-		setPlayer(response.data);
+		//const response = await axios.get(`http://localhost:8080/api/players/${id}`);
+		const player = await axios.get(`/api/players/${playerId}`);
+		//setPlayer(response.data);
+		console.log(player.data);
+		dispatch(setSinglePlayer(player.data));
 		setDoneLoading(true);
 		// console.log("these are your players", player);
 	};
@@ -20,7 +26,7 @@ const SinglePlayer = () => {
 		getPlayer();
 	}, []);
 
-	if (!doneLoading) return <p>loading</p>;
+	if (!doneLoading) return <p>Data is loading...</p>;
 	else
 		return (
 			<div>

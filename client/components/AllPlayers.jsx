@@ -1,8 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setLeaderboard } from "../features/leaderboardSlice";
 
 const AllPlayers = ({ players }) => {
-	console.log("from all players", players);
+	const dispatch = useDispatch();
+
+	dispatch(setLeaderboard(players.data));
+	//console.log("from all players", players);
+
 	return (
 		<div id="players">
 			<h1 className="headline">Leaderboard:</h1>
