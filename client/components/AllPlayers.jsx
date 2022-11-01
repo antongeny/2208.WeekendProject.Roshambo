@@ -4,9 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLeaderboard } from "../features/leaderboardSlice";
 
 const AllPlayers = ({ players }) => {
-	const dispatch = useDispatch();
-
-	dispatch(setLeaderboard(players.data));
 	//console.log("from all players", players);
 
 	return (

@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AllPlayers from "./components/AllPlayers.jsx";
-
 import { Link, Route, Routes } from "react-router-dom";
 import SinglePlayer from "./components/SinglePlayer.jsx";
+import { useSelector, useDispatch } from "react-redux";
+import { setLeaderboard } from "./features/leaderboardSlice.js";
 
 const App = () => {
-	const [players, setPlayers] = useState([]);
-
+	//const [players, setPlayers] = useState([]);
+	const dispatch = useDispatch();
+	const players = useSelector((state) => state.leaderboard.allPlayers);
 	const getPlayers = async () => {
 		const response = await axios.get("http://localhost:8080/api/players");
-		setPlayers(response.data);
+		dispatch(setLeaderboard(response.data));
 	};
 
 	useEffect(() => {

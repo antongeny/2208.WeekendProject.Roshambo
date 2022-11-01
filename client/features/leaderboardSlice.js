@@ -1,16 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+const initialState = {
+	allPlayers: [],
+	singlePlayer: [],
+};
 
 export const leaderboardSlice = createSlice({
 	name: "leaderboard",
 	initialState,
 	reducers: {
 		setLeaderboard: (state, action) => {
-			state.playerLeaderboard = action.payload;
+			state.allPlayers = action.payload;
 		},
 		setSinglePlayer: (state, action) => {
-			state.setSinglePlayer = action.payload;
+			state.singlePlayer = action.payload;
 		},
 		// similar to above with addPlayer:
 		//addPlayer
